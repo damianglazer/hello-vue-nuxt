@@ -1,6 +1,7 @@
 <script setup>
   import {ref, onBeforeMount} from 'vue';
   import axios from 'axios';
+  import { RouterLink } from 'vue-router'
 
   const blur = ref(1);
   const width = ref(200);
@@ -52,9 +53,11 @@
   <button @click="check">Sprawdź</button>
 
   <div class="list">
-      <div v-for="image in imagesList" class="img-container">
+      <div v-for="image in imagesList" class="img-container" :key="image.id">
+        <RouterLink :to="`/test/${image.id}`">
           {{image.author}}
           <img :src="`https://picsum.photos/id/${image.id}/${width}/${height}`" />
+        </RouterLink>
       </div>
   </div>
 
